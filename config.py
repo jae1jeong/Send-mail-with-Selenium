@@ -2,8 +2,8 @@
 # ---- Settings------
 
 # Naver Id,Password
-id = 'naver id'
-pw = 'naver password'
+id = 'id'
+pw = 'pw'
 
 
 
@@ -13,9 +13,11 @@ path = '/home/jaewon/다운로드/chromedriver' # chromedriver path
 title = 'this is test'
 to = 'test@gmail.com'
 content = 'this is content'
-attachment = '/home/jaewon/다운로드/work.xlsx'
 
-''' Reserve Send Section'''
+# attachment section
+filename = 'stack.h'
+
+# Reserve Send Section
 # r_time = [시,분]
 r_time = [17,1] # 분 -> 정각(1), 15분(2), 30분(3), 45분(4)
 
@@ -28,4 +30,4 @@ minute = '//*[@id="direct_minute"]/option['+ str(r_time[1]) +']'
 
 
 
-#p_time = list(map(lambda x:x+1,a))
+

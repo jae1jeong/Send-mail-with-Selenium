@@ -2,6 +2,8 @@ from selenium import webdriver
 import config
 import time
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+
 
 
 
@@ -11,7 +13,9 @@ class N_D:
 
 
     def __init__(self):
-        self.driver = webdriver.Chrome(path)
+        options = Options()
+        options.add_argument('--start-fullscreen')
+        self.driver = webdriver.Chrome(path,chrome_options=options)
         self.login(id,pw)
 
 
@@ -25,7 +29,7 @@ class N_D:
 
 
 
-    def write_email(self,who,title,content,reserve = True):
+    def write_email(self,who,title,content,reserve = True,attach=True):
         self.driver.get('https://mail.naver.com/')
         self.driver.find_element_by_xpath('//*[@id="nav_snb"]/div[1]/a[1]').click()
         time.sleep(2)
@@ -40,6 +44,32 @@ class N_D:
         self.driver.switch_to_default_content()
 
 
+
+
+        if attach:
+
+            import pyautogui as pag
+
+
+            a = pag.locateCenterOnScreen('my_pc.png')
+            pag.click(a)
+            time.sleep(1)
+
+            b = pag.locateCenterOnScreen('search.png')
+            pag.click(b)
+            time.sleep(1)
+            pag.typewrite(file_name)
+            time.sleep(2)
+
+            a = pag.moveTo(642,209,0)
+            pag.leftClick(a)
+            time.sleep(1)
+
+            i = pag.locateCenterOnScreen('open.png')
+            pag.doubleClick(i)
+
+        else:
+            pass
 
         if reserve:
             hour = config.hour
@@ -74,10 +104,11 @@ class N_D:
             time.sleep(2)
 
 
-
+    
     def __del__(self):
         self.driver.quit()
         print('Terminated')
+        
 
 
 
@@ -89,11 +120,12 @@ if __name__ == '__main__':
     title = config.title
     content = config.content
     to = config.to
+    file_name = config.filename
     # ------------------------
 
 
     a = N_D()
-    #a.write_email(to,title,content,False)
+    a.write_email(to,title,content,False,True)
 
 
 
