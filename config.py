@@ -15,7 +15,7 @@ to = 'test@gmail.com'
 content = 'this is content'
 
 # attachment section
-filename = 'stack.h'
+filename = 'filename'
 
 # Reserve Send Section
 # r_time = [시,분]
